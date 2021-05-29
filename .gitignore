@@ -12,6 +12,7 @@
 /build
 
 # misc
+package-lock.json
 secret.js
 
 .DS_Store
