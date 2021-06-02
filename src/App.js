@@ -17,7 +17,7 @@ export default class App extends React.Component {
     if (Data) console.log("Data: ", Data);
 
     return <div className="App">
-      {Error ? <h1>Error</h1> : <h1>Success</h1>}
+      
     </div>
   } 
 }
