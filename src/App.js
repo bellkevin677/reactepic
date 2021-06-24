@@ -8,7 +8,11 @@ export default class App extends React.Component {
       Error,
       Client,
       Patient,
-      Data
+      Data,
+      // medicationStatment,
+      // condition,
+      // related,
+      // famHistory
     } = this.props;
 
     let Name = Patient.name.find(arrayRecord => arrayRecord.use === "official") || Patient.name;
@@ -34,7 +38,7 @@ export default class App extends React.Component {
       <h4>{Patient.gender || "n/a"}</h4>
       <h3>{Patient.birthDate || "n/a"}</h3>
       <br></br>
-      <h3>{Address.line[0]}</h3>
+      <h3>{Address.line[0] || "n/a"}</h3>
       <h3>{Address.city}, {Address.state}, {Address.postalCode}</h3>
       
     </div>
