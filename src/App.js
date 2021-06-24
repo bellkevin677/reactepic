@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.css';
-
 export default class App extends React.Component {
-
   render() {
+
     const {
       Error,
       Client,
@@ -15,20 +14,22 @@ export default class App extends React.Component {
       // famHistory
     } = this.props;
 
-    let Name = Patient.name.find(arrayRecord => arrayRecord.use === "official") || Patient.name;
 
-    let ID = Patient.identifier.find(arrayRecord => arrayRecord.use === "official") || Patient.identifier[0];
-    
-    let Address = Patient.address.find(arrayRecord => arrayRecord.use === "official") || Patient.address[0];
-   
 
-    if (Error) console.error(Error);
-    if (Client) console.log("Client: ", Client);
-    if (Patient) console.log("Patient: ", Patient);
-    if (Data) console.log("Data: ", Data);
-    if (ID) console.log("ID: ", ID);
-    if (Name) console.log("Name: ", Name);
-    if (Address) console.log("Address: ", Address)
+
+    let Name =
+      Patient.name.find((arrayRecord) => arrayRecord.use === 'official') ||
+      Patient.name;
+
+    let ID =
+      Patient.identifier.find(
+        (arrayRecord) => arrayRecord.use === 'official'
+      ) || Patient.identifier[0];
+
+    let Address =
+      Patient.address.find((arrayRecord) => arrayRecord.use === 'official') ||
+      Patient.address[0];
+
 
     return <div className="App">
       <h1>Patient Info</h1>
@@ -44,5 +45,3 @@ export default class App extends React.Component {
     </div>
   } 
 }
-
-

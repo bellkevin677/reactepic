@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 
 const root = document.getElementById('root');
 
+
 console.log(client);
 
 SMART.init({
@@ -58,6 +59,8 @@ SMART.init({
     </React.StrictMode>
   , root);
 });
+
+
 
 
 
