@@ -25,8 +25,8 @@ SMART.init({
   console.log (patient)
   console.log (client)
 
-  // const medicationStatement = await client.request(`/MedicationStatement?patient=${patient.id}`)
-  // console.log ("medicationStatement", medicationStatement)
+  const medicationStatement = await client.request(`/MedicationStatement?patient=${patient.id}`)
+  console.log ("medicationStatement", medicationStatement)
 
   // const condition = await client.request(`STU3/Condition?subject={subject}&patient=${patient.id}&clinical-status={clinical-status}&category={category}&encounter={encounter}`)
   // console.log ("condition", condition)
@@ -34,7 +34,7 @@ SMART.init({
   // const related = await client.request(`R4/RelatedPerson?patient=${patient.id}`)
   // console.log ("related", related)
   
-  // const famHistory = await client.request(`DSTU2/FamilyMemberHistory?patient={patient}&subject={subject}`)
+  // const famHistory = await client.request(`/FamilyMemberHistory?patient={patient.id}&subject={subject}`)
   // console.log ("famHistory", famHistory)
 
 

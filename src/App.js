@@ -8,7 +8,7 @@ export default class App extends React.Component {
       Client,
       Patient,
       Data,
-      // medicationStatment,
+      medicationStatement,
       // condition,
       // related,
       // famHistory
@@ -30,6 +30,9 @@ export default class App extends React.Component {
       Patient.address.find((arrayRecord) => arrayRecord.use === 'official') ||
       Patient.address[0];
 
+    // let medname = 
+    //     medicationStatement.entry.find((arrayRecord) => arrayRecord.use) || medicationStatement.entry[0];
+
 
     return <div className="App">
       <h1>Patient Info</h1>
@@ -41,6 +44,10 @@ export default class App extends React.Component {
       <br></br>
       <h3>{Address.line[0] || "n/a"}</h3>
       <h3>{Address.city}, {Address.state}, {Address.postalCode}</h3>
+      <br></br>
+      <br></br>
+      {/* <h1>Medication Statement</h1>
+      <h2>{medname.resource.medicationCodeableConcept || "n/a"}</h2> */}
       
     </div>
   } 
