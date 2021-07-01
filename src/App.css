@@ -2,3 +2,17 @@
   text-align: center;
 }
 
+h1 {
+  text-align: left;
+  text-decoration: underline;
+  padding: 20px;
+}
+
+.Card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 150px;
+  width: 100%; 
+  height: 100%; 
+}
