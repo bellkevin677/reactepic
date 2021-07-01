@@ -80,12 +80,7 @@ export default class App extends React.Component {
               <tr>
                 <td>Address:</td>
                 <td> {Address.line[0] || "n/a"}, {Address.city}, {Address.state}, {Address.postalCode}</td>
-                {/* <td> {Address.city}, {Address.state}, {Address.postalCode}</td> */}
               </tr>
-              {/* <tr>
-                <td>Medication Statement:</td>
-                <td> {medname}</td>
-                </tr> */}
             </tbody>
           </Table>
         </Card>
@@ -94,18 +89,3 @@ export default class App extends React.Component {
   }
 }
 
-// Original Code (Kevin)
-{/* <h1>Patient Info</h1>
-      <h4>Patient ID: {ID.value || "n/a"}</h4> */}
-{/* <br></br>
-      <h2>Patient Name: {Name.text || "n/a"}</h2> */}
-{/* <h4>Gender: {Patient.gender || "n/a"}</h4> */ }
-{/* <h3>Birthday: {Patient.birthDate || "n/a"}</h3> */ }
-{/* <br></br> */ }
-{/* <h3>Address:</h3> */ }
-{/* <h3> {Address.line[0] || "n/a"}</h3>
-      <h3>{Address.city}, {Address.state}, {Address.postalCode}</h3>
-      <br></br>
-      <br></br> */}
-{/* <h1>Medication Statement</h1>
-      <h2>{medname.resource.medicationCodeableConcept || "n/a"}</h2> */}
