@@ -14,33 +14,22 @@ SMART.init({
   iss: "https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4/",
   redirectUri: "http://localhost:3000",
   clientId: "593798c6-39ad-4ff6-813a-7cc4fd0e74d4",
-  scope: "openid fhirUser patient/*.* MedicationStatement/*.* MedicationRequest/*.* Medication/*.* RelatedPerson/*.* online_access",
+  scope: "openid fhirUser patient/*.* MedicationRequest/*.* RelatedPerson/*.* online_access",
 })
-
-// Condition.Search FamilyMemberHistory.Search RelatedPerson.Read
   
-
 .then(async (client) => {
   const patient = await client.patient.read()
   console.log (patient)
   console.log (client)
 
-  // const medicationStatement = await client.request(`/MedicationStatement?patient=${patient.id}`)
-  // console.log ("medicationStatement", medicationStatement)
+  const medicationRequest = await client.request(`/MedicationRequest?patient=${patient.id}`)
+  console.log ("medicationRequest", medicationRequest)
 
   // const related = await client.request(`/RelatedPerson?patient=${patient.id}`)
   // console.log ("related", related)
-
-  const medication = await client.request(`/Medication?patient=${patient.id}`)
-  console.log ("medication", medication)
-
-  // const condition = await client.request(`STU3/Condition?subject={subject}&patient=${patient.id}&clinical-status={clinical-status}&category={category}&encounter={encounter}`)
-  // console.log ("condition", condition)
   
-  // const famHistory = await client.request(`/FamilyMemberHistory?patient={patient.id}&subject={subject}`)
+  // const famHistory = await client.request(`/FamilyMemberHistory?patient=${patient.id}`)
   // console.log ("famHistory", famHistory)
-
-
 
   ReactDOM.render(
     <React.StrictMode>

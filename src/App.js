@@ -39,13 +39,9 @@ export default class App extends React.Component {
       Patient.address.find((arrayRecord) => arrayRecord.use === 'official') ||
       Patient.address[0];
 
-    // Original Code (Kevin)
-    // let medname = 
-    //     medicationStatement.entry.find((arrayRecord) => arrayRecord.use) || medicationStatement.entry[0];
-
     // Code from Andrew
     // let Medname =
-    // medicationStatement.entry[0].resource.medicationCodeableConcept.text;
+    // medicationRequest.entry[0].resource;
     // console.log(Medname);
 
 
