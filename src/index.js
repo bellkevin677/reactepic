@@ -34,7 +34,7 @@ SMART.init({
       <React.StrictMode>
         <App
           patient={patient}
-          medications={medicationRequest.entries}
+          medications={medicationRequest.entry}
           // condition={condition}
           // related={related}
           // famHistory={famHistory}

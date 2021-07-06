@@ -12,7 +12,7 @@ export default class App extends React.Component {
       Client,
       patient,
       Data,
-      medications,
+      medications = [],
       // condition,
       // related,
       // famHistory
@@ -27,14 +27,11 @@ export default class App extends React.Component {
         (arrayRecord) => arrayRecord.use === 'official'
       ) || patient.identifier[0];
 
-    let Address =
+    let address =
       patient.address.find((arrayRecord) => arrayRecord.use === 'official') ||
       patient.address[0];
 
-    // Code from Andrew
-    // let Medname =
-    // medicationRequest.entry[0].resource;
-    // console.log(Medname);
+    console.log(medications);
 
     return (
       <div>
@@ -72,8 +69,43 @@ export default class App extends React.Component {
                 <tr>
                   <td>Address:</td>
                   <td>
-                    {Address.line[0] || 'n/a'}, {Address.city}, {Address.state},{' '}
-                    {Address.postalCode}
+                    {address.line[0] || 'n/a'}, {address.city}, {address.state},{' '}
+                    {address.postalCode}
+                  </td>
+                </tr>
+                {/* This row is if I were doing "dummy" data to work on the UI */}
+                <tr>
+                  <td>Medications:</td>
+                  <td>
+                    <ul>
+                      <li>Statin</li>
+                      <li>Antibiotics</li>
+                    </ul>
+                  </td>
+                </tr>
+                {/* This row is if I were using real data to create a list of medication */}
+                <tr>
+                  <td>Medications:</td>
+                  <td>
+                    <ul>
+                      {medications.map((med, idx) => {
+                        const resource = med.resource;
+                        const reference = resource.medicationReference;
+                        const dosageInstruction =
+                          resource.dosageInstruction &&
+                          resource.dosageInstruction[0];
+
+                        if (!reference || !dosageInstruction) {
+                          return null;
+                        }
+                        const { display = '' } = reference || {};
+                        return (
+                          <li
+                            key={idx}
+                          >{`${display} - ${dosageInstruction.timing.code.text}`}</li>
+                        );
+                      })}
+                    </ul>
                   </td>
                 </tr>
               </tbody>
