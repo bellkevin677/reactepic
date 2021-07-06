@@ -1,87 +1,115 @@
 import React from 'react';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Button from 'react-bootstrap/Button';
-import {
-  Table,
-  Card,
-  ListGroup
-} from 'react-bootstrap';
+import { Table, Card, ListGroup } from 'react-bootstrap';
 
-export default class App extends React.Component {
-  render() {
+export default function App(props) {
+  const {
+    Error,
+    Client,
+    patient,
+    Data,
+    medications = [],
+    // condition,
+    // related,
+    // famHistory
+  } = props;
 
-    const {
-      Error,
-      Client,
-      Patient,
-      Data,
-      medicationStatement,
-      // condition,
-      // related,
-      // famHistory
-    } = this.props;
+  let name =
+    patient.name.find((arrayRecord) => arrayRecord.use === 'official') ||
+    patient.name;
 
+  let identifier =
+    patient.identifier.find((arrayRecord) => arrayRecord.use === 'official') ||
+    patient.identifier[0];
 
+  let address =
+    patient.address.find((arrayRecord) => arrayRecord.use === 'official') ||
+    patient.address[0];
 
+  console.log(medications);
 
-    let Name =
-      Patient.name.find((arrayRecord) => arrayRecord.use === 'official') ||
-      Patient.name;
-
-    let ID =
-      Patient.identifier.find(
-        (arrayRecord) => arrayRecord.use === 'official'
-      ) || Patient.identifier[0];
-
-    let Address =
-      Patient.address.find((arrayRecord) => arrayRecord.use === 'official') ||
-      Patient.address[0];
-
-    // Code from Andrew
-    // let Medname =
-    // medicationRequest.entry[0].resource;
-    // console.log(Medname);
-
-
-    return <div >
+  return (
+    <div>
       <h1>My Health Access</h1>
       <br></br>
       <div class="Card">
-        <Card style={{ width: '500px' }} className="d-flex justify-content-center align-items-center" border="primary">
+        <Card
+          style={{ width: '500px' }}
+          className="d-flex justify-content-center align-items-center"
+          border="primary"
+        >
           <Table striped bordered hover size="sm" bg="light">
             <thead>
               <tr>
-                <th >Patient Info</th>
+                <th>Patient Info</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td >Patient ID:</td>
-                <td>{ID.value || "n/a"}</td>
+                <td>Patient ID:</td>
+                <td>{identifier.value || 'n/a'}</td>
               </tr>
               <tr>
                 <td>Patient Name:</td>
-                <td>{Name.text || "n/a"}</td>
+                <td>{name.text || 'n/a'}</td>
               </tr>
               <tr>
                 <td>Gender:</td>
-                <td> {Patient.gender || "n/a"}</td>
+                <td> {patient.gender || 'n/a'}</td>
               </tr>
               <tr>
                 <td>Birthday:</td>
-                <td> {Patient.birthDate || "n/a"}</td>
+                <td> {patient.birthDate || 'n/a'}</td>
               </tr>
               <tr>
                 <td>Address:</td>
-                <td> {Address.line[0] || "n/a"}, {Address.city}, {Address.state}, {Address.postalCode}</td>
+                <td>
+                  {address.line[0] || 'n/a'}, {address.city}, {address.state},{' '}
+                  {address.postalCode}
+                </td>
+              </tr>
+              {/* This row is if I were doing "dummy" data to work on the UI */}
+              <tr>
+                <td>Medications:</td>
+                <td>
+                  <ul>
+                    <li>Statin</li>
+                    <li>Antibiotics</li>
+                  </ul>
+                </td>
+              </tr>
+              {/* This row is if I were using real data to create a list of medication */}
+              <tr>
+                <td>Medications:</td>
+                <td>
+                  <ul>
+                    {medications.map((med, idx) => {
+                      const resource = med.resource;
+                      const reference = resource.medicationReference;
+                      const dosageInstruction =
+                        resource.dosageInstruction &&
+                        resource.dosageInstruction[0];
+
+                      if (!reference || !dosageInstruction) {
+                        return null;
+                      }
+                      const { display = '' } = reference || {};
+                      return (
+                        <li
+                          key={idx}
+                        >{`${display} - ${dosageInstruction.timing.code.text}`}</li>
+                      );
+                    })}
+                  </ul>
+                </td>
               </tr>
             </tbody>
           </Table>
         </Card>
       </div>
-    </div >
-  }
+    </div>
+  );
 }
-
